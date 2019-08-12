@@ -8,14 +8,16 @@ import App from '../App';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-import { shallow } from "../enzyme.config";
+import { View } from 'react-native';
+import { shallow } from 'enzyme';
+
+const app = shallow(<App />);
 
 it('renders correctly', () => {
-  renderer.create(<App />);
+  expect(app).toMatchSnapshot();
 });
 
 it('renders only one Fragment component', () => {
-  const wrapper = shallow(<App />);
+  const tree = renderer.create(<MockApp />).toJSON;
   // one fragment component
-  expect(wrapper.find('Fragment')).toHaveLength(1);
 })

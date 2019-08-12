@@ -1,13 +1,11 @@
 import {
   createAppContainer,
   createStackNavigator,
-  StackNavigatorConfig,
   NavigationRouteConfigMap,
-  BottomTabNavigatorConfig,
-  TabNavigatorConfig,
   NavigationContainer,
 } from "react-navigation";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
+import MovieList from "../screens/MovieList";
 
 /**
 |--------------------------------------------------
@@ -17,8 +15,9 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 */
 
 const movieStackRouteConfig: NavigationRouteConfigMap = {
-  MovieList: {},
-  MovieDetails: {},
+  MovieList: {
+    screen: MovieList,
+  },
 };
 
 const MovieStack: NavigationContainer = createStackNavigator(
@@ -34,8 +33,11 @@ const MovieStack: NavigationContainer = createStackNavigator(
 const tabRouteConfig: NavigationRouteConfigMap = {
   MovieStack: {
     /* add navigation props */
+    screen: MovieStack,
+    navigationOptions: {
+      title: "Movies"
+    }
   },
-  Account: {},
 };
 
 const TabStack: NavigationContainer = createMaterialBottomTabNavigator(

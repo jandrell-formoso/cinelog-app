@@ -8,27 +8,35 @@
  * @format
  */
 
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
 } from 'react-native';
 
 import {
-  Header,
-  LearnMoreLinks,
   Colors,
-  DebugInstructions,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import Navigator from './src/utils/routes';
+import Core from '@cinelog/core';
+
 const App = () => {
+  useEffect(() => {
+    // Initialize core component.
+    Core.init({
+      host: "https://api.themoviedb.org",
+      env: "development",
+      config: {
+        apiVersion: "3",
+      },
+    })
+    return () => {
+      
+    };
+  }, [])
   return (
     <Fragment>
+      <Navigator />
     </Fragment>
   );
 };
